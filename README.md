@@ -1,6 +1,9 @@
 # filemanage
+
 Java搭建的简单文件系统，支持单文件的上传下载功能。配合项目[SaveEvidence](https://github.com/InkMonkey/SaveEvidence.git)使用。
+
 ###部署
+
 1.使用IDEA中maven工具将源码编译打包。
 
 2.将`target`目录下`filemanage-0.0.1-SNAPSHOT-bin.zip`上传至服务器。
@@ -14,6 +17,7 @@ Java搭建的简单文件系统，支持单文件的上传下载功能。配合�
 6.在项目根目录下修改`run.sh`文件,配置脚本。通过`./run.sh start`启动程序。
 
 ###注意事项
+
 1.在linux环境下初次使用时,请执行`dos2unix`命令更改`run.sh`文件格式
 
 2.`run.sh`文件中`APP_NAME`后需更改为程序jar包名称。
