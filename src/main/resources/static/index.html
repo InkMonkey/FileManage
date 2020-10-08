@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+    <title>文件上传下载</title>
+</head>
+<body>
+<input id="上传", type="file">
+<input type="submit" onclick="upload()">
+<hr>
+<input id="fileName" type="text">
+<button onclick="download()">下载</button>
+<script type="text/javascript">
+    function upload() {
+        var file = $("#上传")[0].files[0];
+        var formData = new FormData();
+        formData.append("file",file);
+
+        $.ajax({
+            url: "http://localhost:8080/file/upload",
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                console.log(result);
+                if (result.status ===0){
+                    alert(result.msg);
+                    console.log("fileName:",result.data.fileName);
+                    console.log("filePath:",result.data.filePath);
+                }
+            }
+        })
+    };
+
+    function download () {
+        var fileName = $("#fileName").val();
+        $.ajax({
+            url: "http://localhost:8080/file/download",
+            type: 'POST',
+            data: {"fileName":fileName},
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                var a = document.createElement('a');
+                var url = window.URL.createObjectURL(data);
+                a.href = url;
+                a.download = fileName;
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (msg) {
+                console.error(msg);
+            }
+        })
+    };
+</script>
+</body>
+</html>
+
