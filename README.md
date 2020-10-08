@@ -1,6 +1,6 @@
 # filemanage
 
-Java搭建的简单文件系统，支持单文件的上传下载功能。配合项目[SaveEvidence](https://github.com/InkMonkey/SaveEvidence.git)使用。
+Java搭建的简单文件系统，支持单文件的上传下载功能。配合项目[SaveEvidence](https://github.com/InkMonkey/SaveEvidence)使用。
 
 ###部署
 
